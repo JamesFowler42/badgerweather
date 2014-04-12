@@ -1,0 +1,89 @@
+{
+  "uuid": "7ff01bbb-0726-4ab0-bb2e-2bab404243c8",
+  "shortName": "Badger Weather",
+  "longName": "Badger Weather",
+  "companyName": "Roth/Fowler",
+  "versionCode": 1,
+  "versionLabel": "1.0.0",
+  "watchapp": {
+    "watchface": true
+  },
+  "appKeys": {
+    "icon": 0,
+    "temperature": 1
+  },
+  "resources": {
+  	"media": [
+    	  {
+	        "type": "png",
+	        "name": "DAY_SUN",
+	        "file": "img/day_sun.png"
+	      },
+	      {
+	        "type": "png",
+	        "name": "NIGHT_CLEAR",
+	        "file": "img/night_clear.png"
+	      },
+	      {
+	        "type": "png",
+	        "name": "DAY_SUN_CLOUD",
+	        "file": "img/day_sun_cloud.png"
+	      },
+	      {
+	        "type": "png",
+	        "name": "NIGHT_CLEAR_CLOUD",
+	        "file": "img/night_clear_cloud.png"
+	      },
+	      {
+	        "type": "png",
+	        "name": "CLOUD",
+	        "file": "img/cloud.png"
+	      },
+	      {
+	        "type": "png",
+	        "name": "BROKEN_CLOUD",
+	        "file": "img/broken_cloud.png"
+	      },
+	      {
+	        "type": "png",
+	        "name": "SHOWERS",
+	        "file": "img/showers.png"
+	      },
+	      {
+	        "type": "png",
+	        "name": "DAY_RAIN",
+	        "file": "img/day_rain.png"
+	      },
+	      {
+	        "type": "png",
+	        "name": "NIGHT_RAIN",
+	        "file": "img/night_rain.png"
+	      },
+	      {
+	        "type": "png",
+	        "name": "THUNDERSTORM",
+	        "file": "img/thunderstorm.png"
+	      },
+	      {
+	        "type": "png",
+	        "name": "SNOW",
+	        "file": "img/snow.png"
+	      },
+	      {
+	        "type": "png",
+	        "name": "FOG",
+	        "file": "img/fog.png"
+	      },
+	      {
+	        "type": "png",
+	        "name": "INTERMISSION",
+	        "file": "img/intermission.png"
+	      },
+	      {
+	        "type": "png",
+	        "name": "CLUELESS",
+	        "file": "img/clueless.png"
+	      }
+      ]
+  }
+}
