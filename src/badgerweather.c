@@ -37,27 +37,77 @@ static char time_text[6];
 static AppSync sync;
 static uint8_t sync_buffer[64];
 
-IconEntry icon_lookup[] = {
-                           { .icon="???", .resource_id=RESOURCE_ID_CLUELESS, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94},
-                           { .icon="01d", .resource_id=RESOURCE_ID_DAY_SUN, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94},
-                           { .icon="01n", .resource_id=RESOURCE_ID_NIGHT_CLEAR, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94},
-                           { .icon="02d", .resource_id=RESOURCE_ID_DAY_SUN_CLOUD, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94},
-                           { .icon="02n", .resource_id=RESOURCE_ID_NIGHT_CLEAR_CLOUD, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94},
-                           { .icon="03d", .resource_id=RESOURCE_ID_CLOUD, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94},
-                           { .icon="03n", .resource_id=RESOURCE_ID_CLOUD, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94},
-                           { .icon="04d", .resource_id=RESOURCE_ID_BROKEN_CLOUD, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94},
-                           { .icon="04n", .resource_id=RESOURCE_ID_BROKEN_CLOUD, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94},
-                           { .icon="09d", .resource_id=RESOURCE_ID_SHOWERS, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94},
-                           { .icon="09n", .resource_id=RESOURCE_ID_SHOWERS, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94},
-                           { .icon="10d", .resource_id=RESOURCE_ID_DAY_RAIN, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94},
-                           { .icon="10n", .resource_id=RESOURCE_ID_NIGHT_RAIN, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94},
-                           { .icon="11d", .resource_id=RESOURCE_ID_THUNDERSTORM, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94},
-                           { .icon="11n", .resource_id=RESOURCE_ID_THUNDERSTORM, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94},
-                           { .icon="13d", .resource_id=RESOURCE_ID_SNOW, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94},
-                           { .icon="13n", .resource_id=RESOURCE_ID_SNOW, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94},
-                           { .icon="50d", .resource_id=RESOURCE_ID_FOG, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94},
-                           { .icon="50n", .resource_id=RESOURCE_ID_FOG, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94}
+static char previous_icon [] = "   ";
+
+static IconEntry icon_lookup[] = {
+                           { .icon="???", .resource_id=RESOURCE_ID_CLUELESS, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
+                           { .icon="01d", .resource_id=RESOURCE_ID_DAY_SUN, .tm_x=0, .tm_y=50, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=40, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
+                           { .icon="01n", .resource_id=RESOURCE_ID_NIGHT_CLEAR, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
+                           { .icon="02d", .resource_id=RESOURCE_ID_DAY_SUN_CLOUD, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
+                           { .icon="02n", .resource_id=RESOURCE_ID_NIGHT_CLEAR_CLOUD, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
+                           { .icon="03d", .resource_id=RESOURCE_ID_CLOUD, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
+                           { .icon="03n", .resource_id=RESOURCE_ID_CLOUD, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
+                           { .icon="04d", .resource_id=RESOURCE_ID_BROKEN_CLOUD, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
+                           { .icon="04n", .resource_id=RESOURCE_ID_BROKEN_CLOUD, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
+                           { .icon="09d", .resource_id=RESOURCE_ID_SHOWERS, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
+                           { .icon="09n", .resource_id=RESOURCE_ID_SHOWERS, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
+                           { .icon="10d", .resource_id=RESOURCE_ID_DAY_RAIN, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
+                           { .icon="10n", .resource_id=RESOURCE_ID_NIGHT_RAIN, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
+                           { .icon="11d", .resource_id=RESOURCE_ID_THUNDERSTORM, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
+                           { .icon="11n", .resource_id=RESOURCE_ID_THUNDERSTORM, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
+                           { .icon="13d", .resource_id=RESOURCE_ID_SNOW, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
+                           { .icon="13n", .resource_id=RESOURCE_ID_SNOW, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
+                           { .icon="50d", .resource_id=RESOURCE_ID_FOG, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
+                           { .icon="50n", .resource_id=RESOURCE_ID_FOG, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18}
 };
+
+static bool inter_showing = false;
+static Window *inter_window;
+static BitmapLayer *inter_layer;
+static GBitmap *inter_bitmap;
+static AppTimer *inter_timer;
+
+/*
+ * Remove the intermission window
+ */
+static void hide_inter_layer(void *data) {
+  if (inter_showing) {
+    window_stack_remove(inter_window, true);
+    bitmap_layer_destroy(inter_layer);
+    gbitmap_destroy(inter_bitmap);
+    window_destroy(inter_window);
+    inter_showing = false;
+  }
+}
+
+/*
+ * Show the intermission window
+ */
+static void show_inter() {
+
+  // Already showing - make it vanish quickly
+  if (inter_showing) {
+    app_timer_reschedule(inter_timer, 200);
+    return;
+  }
+
+  // Bring up notice
+  inter_showing = true;
+  inter_window = window_create();
+  window_set_fullscreen(inter_window, true);
+  window_stack_push(inter_window, true /* Animated */);
+  window_set_background_color(inter_window, GColorBlack);
+
+  Layer *window_layer = window_get_root_layer(inter_window);
+
+  inter_layer = bitmap_layer_create(GRect(0, 0, 144, 168));
+  layer_add_child(window_layer, bitmap_layer_get_layer(inter_layer));
+
+  inter_bitmap = gbitmap_create_with_resource(RESOURCE_ID_INTERMISSION);
+  bitmap_layer_set_bitmap(inter_layer, inter_bitmap);
+
+  inter_timer = app_timer_register(INTER_DISPLAY_MS, hide_inter_layer, NULL);
+}
 
 static void sync_error_callback(DictionaryResult dict_error, AppMessageResult app_message_error, void *context) {
   APP_LOG(APP_LOG_LEVEL_DEBUG, "App Message Sync Error: %d", app_message_error);
@@ -72,26 +122,42 @@ static IconEntry* findInfo(const char *icon) {
   return &icon_lookup[0];
 }
 
+static GFont get_font(int font_id) {
+  if (font_id == 18) {
+    return fonts_get_system_font(FONT_KEY_GOTHIC_18);
+  } else if (font_id == -28) {
+    return fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD);
+  }
+  return fonts_get_system_font(FONT_KEY_GOTHIC_14); // Ooops
+}
+
+static void set_weather_info(const char *icon) {
+  IconEntry *new_info = findInfo(icon);
+  if (icon_bitmap) {
+    gbitmap_destroy(icon_bitmap);
+  }
+  icon_bitmap = gbitmap_create_with_resource(new_info->resource_id);
+  bitmap_layer_set_bitmap(icon_layer, icon_bitmap);
+  layer_set_frame(text_layer_get_layer(text_time_layer), GRect(new_info->tm_x, new_info->tm_y, new_info->tm_w, new_info->tm_h));
+  layer_set_frame(text_layer_get_layer(temperature_layer), GRect(new_info->tp_x, new_info->tp_y, new_info->tp_w, new_info->tp_h));
+  text_layer_set_font(text_time_layer, get_font(new_info->tm_font));
+  text_layer_set_font(temperature_layer, get_font(new_info->tp_font));
+
+}
+
 static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tuple, const Tuple* old_tuple, void* context) {
   switch (key) {
-    case WEATHER_ICON_KEY:
-      {
-        IconEntry *new_info = findInfo(new_tuple->value->cstring);
+  case WEATHER_ICON_KEY:
+    if (strncmp(new_tuple->value->cstring, previous_icon, sizeof(previous_icon)) != 0) {
+      show_inter();
+      set_weather_info(new_tuple->value->cstring);
+    }
+    break;
 
-      if (icon_bitmap) {
-        gbitmap_destroy(icon_bitmap);
-      }
-      icon_bitmap = gbitmap_create_with_resource(new_info->resource_id);
-      bitmap_layer_set_bitmap(icon_layer, icon_bitmap);
-      layer_set_frame(text_layer_get_layer(text_time_layer), GRect(new_info->tm_x, new_info->tm_y, new_info->tm_w, new_info->tm_h));
-      layer_set_frame(text_layer_get_layer(temperature_layer), GRect(new_info->tp_x, new_info->tp_y, new_info->tp_w, new_info->tp_h));
-      }
-      break;
-
-    case WEATHER_TEMPERATURE_KEY:
-      // App Sync keeps new_tuple in sync_buffer, so we may use it directly
-      text_layer_set_text(temperature_layer, new_tuple->value->cstring);
-      break;
+  case WEATHER_TEMPERATURE_KEY:
+    // App Sync keeps new_tuple in sync_buffer, so we may use it directly
+    text_layer_set_text(temperature_layer, new_tuple->value->cstring);
+    break;
 
   }
 }
@@ -118,19 +184,19 @@ static void window_load(Window *window) {
   icon_layer = bitmap_layer_create(GRect(0, 0, 144, 168));
   layer_add_child(window_layer, bitmap_layer_get_layer(icon_layer));
 
-  temperature_layer = text_layer_create(GRect(0, 95, 144, 68));
+  temperature_layer = text_layer_create(GRect(0, 0, 144, 168));
   text_layer_set_text_color(temperature_layer, GColorWhite);
   text_layer_set_background_color(temperature_layer, GColorClear);
-  text_layer_set_font(temperature_layer, fonts_get_system_font(FONT_KEY_GOTHIC_18));
   text_layer_set_text_alignment(temperature_layer, GTextAlignmentCenter);
   layer_add_child(window_layer, text_layer_get_layer(temperature_layer));
 
-  text_time_layer = text_layer_create(GRect(0, 112, 143, 168-112));
+  text_time_layer = text_layer_create(GRect(0, 0, 144, 168));
   text_layer_set_text_color(text_time_layer, GColorWhite);
   text_layer_set_background_color(text_time_layer, GColorClear);
-  text_layer_set_font(text_time_layer, fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD));
   text_layer_set_text_alignment(text_time_layer, GTextAlignmentCenter);
   layer_add_child(window_get_root_layer(window), text_layer_get_layer(text_time_layer));
+
+  set_weather_info("???");
 
   Tuplet initial_values[] = {
     TupletCString(WEATHER_ICON_KEY, "01d"),
@@ -164,6 +230,10 @@ static void handle_minute_tick(struct tm *tick_time, TimeUnits units_changed) {
   if (time_text[4] == ' ')
     time_text[4] = '\0';
   text_layer_set_text(text_time_layer, time_text);
+
+  if (tick_time->tm_min % 10 == 0) {
+    send_cmd();
+  }
 
 }
 

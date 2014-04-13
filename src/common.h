@@ -27,6 +27,8 @@
 
 #include "pebble.h"
 
+#define INTER_DISPLAY_MS 3000
+
 enum WeatherKey {
   WEATHER_ICON_KEY = 0x0,         // TUPLE_CSTRING
   WEATHER_TEMPERATURE_KEY = 0x1   // TUPLE_CSTRING
@@ -39,10 +41,14 @@ typedef struct {
   int16_t tm_y;
   int16_t tm_w;
   int16_t tm_h;
+  int tm_font;
   int16_t tp_x;
   int16_t tp_y;
   int16_t tp_w;
   int16_t tp_h;
+  int tp_font;
 } IconEntry;
+
+
 
 #endif /* COMMON_H_ */

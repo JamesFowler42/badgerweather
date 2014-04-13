@@ -92,10 +92,6 @@ Discarded input sections
                 0x0000000000000000        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
  .text.app_timer_cancel
                 0x0000000000000000        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
- .text.app_timer_register
-                0x0000000000000000        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
- .text.app_timer_reschedule
-                0x0000000000000000        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
  .text.atan2_lookup
                 0x0000000000000000        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
  .text.atoi     0x0000000000000000        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
@@ -488,8 +484,6 @@ Discarded input sections
                 0x0000000000000000        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
  .text.window_stack_pop_all
                 0x0000000000000000        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
- .text.window_stack_remove
-                0x0000000000000000        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
  .text.app_focus_service_subscribe
                 0x0000000000000000        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
  .text.app_focus_service_unsubscribe
@@ -583,194 +577,223 @@ LOAD /Users/keith/pebble-dev/PebbleSDK-2.0.1/arm-cs-tools/bin/../lib/gcc/arm-non
  .pbl_header    0x0000000000000000       0x82 appinfo.auto.c.21.o
                 0x0000000000000000                __pbl_app_info
 
-.text           0x0000000000000084      0x5ec
+.text           0x0000000000000084      0x782
  *(.text)
  .text          0x0000000000000084       0x14 /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
  *(.text.*)
+ .text.send_cmd
+                0x0000000000000098       0x34 src/badgerweather.c.21.o
  .text.handle_minute_tick
-                0x0000000000000098       0x38 src/badgerweather.c.21.o
+                0x00000000000000cc       0x4c src/badgerweather.c.21.o
  .text.window_unload
-                0x00000000000000d0       0x4c src/badgerweather.c.21.o
- .text.window_load
-                0x000000000000011c      0x180 src/badgerweather.c.21.o
+                0x0000000000000118       0x4c src/badgerweather.c.21.o
  .text.sync_error_callback
-                0x000000000000029c       0x20 src/badgerweather.c.21.o
+                0x0000000000000164       0x20 src/badgerweather.c.21.o
+ .text.get_font
+                0x0000000000000184       0x28 src/badgerweather.c.21.o
+ .text.set_weather_info
+                0x00000000000001ac       0xe4 src/badgerweather.c.21.o
+ .text.window_load
+                0x0000000000000290      0x130 src/badgerweather.c.21.o
  .text.sync_tuple_changed_callback
-                0x00000000000002bc       0xdc src/badgerweather.c.21.o
+                0x00000000000003c0       0xf8 src/badgerweather.c.21.o
+ .text.hide_inter_layer
+                0x00000000000004b8       0x48 src/badgerweather.c.21.o
  .text.startup.main
-                0x0000000000000398       0x80 src/badgerweather.c.21.o
-                0x0000000000000398                main
+                0x0000000000000500       0x80 src/badgerweather.c.21.o
+                0x0000000000000500                main
  .text.app_event_loop
-                0x0000000000000418        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000418                app_event_loop
- .text.app_log  0x0000000000000424        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000424                app_log
- .text.app_message_open
-                0x0000000000000430        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000430                app_message_open
- .text.app_sync_deinit
-                0x000000000000043c        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x000000000000043c                app_sync_deinit
- .text.app_sync_init
-                0x0000000000000448        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000448                app_sync_init
- .text.bitmap_layer_create
-                0x0000000000000454        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000454                bitmap_layer_create
- .text.bitmap_layer_destroy
-                0x0000000000000460        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000460                bitmap_layer_destroy
- .text.bitmap_layer_get_layer
-                0x000000000000046c        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x000000000000046c                bitmap_layer_get_layer
- .text.bitmap_layer_set_bitmap
-                0x0000000000000478        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000478                bitmap_layer_set_bitmap
- .text.clock_copy_time_string
-                0x0000000000000484        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000484                clock_copy_time_string
- .text.dict_write_end
-                0x0000000000000490        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000490                dict_write_end
- .text.dict_write_tuplet
-                0x000000000000049c        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x000000000000049c                dict_write_tuplet
- .text.fonts_get_system_font
-                0x00000000000004a8        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x00000000000004a8                fonts_get_system_font
- .text.gbitmap_create_with_resource
-                0x00000000000004b4        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x00000000000004b4                gbitmap_create_with_resource
- .text.gbitmap_destroy
-                0x00000000000004c0        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x00000000000004c0                gbitmap_destroy
- .text.layer_add_child
-                0x00000000000004cc        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x00000000000004cc                layer_add_child
- .text.layer_set_frame
-                0x00000000000004d8        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x00000000000004d8                layer_set_frame
- .text.memset   0x00000000000004e4        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x00000000000004e4                memset
- .text.strncmp  0x00000000000004f0        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x00000000000004f0                strncmp
- .text.text_layer_create
-                0x00000000000004fc        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x00000000000004fc                text_layer_create
- .text.text_layer_destroy
-                0x0000000000000508        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000508                text_layer_destroy
- .text.text_layer_get_layer
-                0x0000000000000514        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000514                text_layer_get_layer
- .text.text_layer_set_background_color
-                0x0000000000000520        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000520                text_layer_set_background_color
- .text.text_layer_set_font
-                0x000000000000052c        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x000000000000052c                text_layer_set_font
- .text.text_layer_set_text
-                0x0000000000000538        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000538                text_layer_set_text
- .text.text_layer_set_text_alignment
-                0x0000000000000544        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000544                text_layer_set_text_alignment
- .text.text_layer_set_text_color
-                0x0000000000000550        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000550                text_layer_set_text_color
- .text.tick_timer_service_subscribe
-                0x000000000000055c        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x000000000000055c                tick_timer_service_subscribe
- .text.tick_timer_service_unsubscribe
-                0x0000000000000568        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000568                tick_timer_service_unsubscribe
- .text.window_create
-                0x0000000000000574        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000574                window_create
- .text.window_destroy
                 0x0000000000000580        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000580                window_destroy
- .text.window_get_root_layer
-                0x000000000000058c        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x000000000000058c                window_get_root_layer
- .text.window_set_background_color
+                0x0000000000000580                app_event_loop
+ .text.app_log  0x000000000000058c        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x000000000000058c                app_log
+ .text.app_message_open
                 0x0000000000000598        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x0000000000000598                window_set_background_color
- .text.window_set_fullscreen
+                0x0000000000000598                app_message_open
+ .text.app_sync_deinit
                 0x00000000000005a4        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x00000000000005a4                window_set_fullscreen
- .text.window_set_window_handlers
+                0x00000000000005a4                app_sync_deinit
+ .text.app_sync_init
                 0x00000000000005b0        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x00000000000005b0                window_set_window_handlers
- .text.window_stack_push
+                0x00000000000005b0                app_sync_init
+ .text.app_timer_register
                 0x00000000000005bc        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x00000000000005bc                window_stack_push
- .text.app_message_outbox_begin
+                0x00000000000005bc                app_timer_register
+ .text.app_timer_reschedule
                 0x00000000000005c8        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x00000000000005c8                app_message_outbox_begin
- .text.app_message_outbox_send
+                0x00000000000005c8                app_timer_reschedule
+ .text.bitmap_layer_create
                 0x00000000000005d4        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
-                0x00000000000005d4                app_message_outbox_send
+                0x00000000000005d4                bitmap_layer_create
+ .text.bitmap_layer_destroy
+                0x00000000000005e0        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x00000000000005e0                bitmap_layer_destroy
+ .text.bitmap_layer_get_layer
+                0x00000000000005ec        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x00000000000005ec                bitmap_layer_get_layer
+ .text.bitmap_layer_set_bitmap
+                0x00000000000005f8        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x00000000000005f8                bitmap_layer_set_bitmap
+ .text.clock_copy_time_string
+                0x0000000000000604        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x0000000000000604                clock_copy_time_string
+ .text.dict_write_end
+                0x0000000000000610        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x0000000000000610                dict_write_end
+ .text.dict_write_tuplet
+                0x000000000000061c        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x000000000000061c                dict_write_tuplet
+ .text.fonts_get_system_font
+                0x0000000000000628        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x0000000000000628                fonts_get_system_font
+ .text.gbitmap_create_with_resource
+                0x0000000000000634        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x0000000000000634                gbitmap_create_with_resource
+ .text.gbitmap_destroy
+                0x0000000000000640        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x0000000000000640                gbitmap_destroy
+ .text.layer_add_child
+                0x000000000000064c        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x000000000000064c                layer_add_child
+ .text.layer_set_frame
+                0x0000000000000658        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x0000000000000658                layer_set_frame
+ .text.memset   0x0000000000000664        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x0000000000000664                memset
+ .text.strncmp  0x0000000000000670        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x0000000000000670                strncmp
+ .text.text_layer_create
+                0x000000000000067c        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x000000000000067c                text_layer_create
+ .text.text_layer_destroy
+                0x0000000000000688        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x0000000000000688                text_layer_destroy
+ .text.text_layer_get_layer
+                0x0000000000000694        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x0000000000000694                text_layer_get_layer
+ .text.text_layer_set_background_color
+                0x00000000000006a0        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x00000000000006a0                text_layer_set_background_color
+ .text.text_layer_set_font
+                0x00000000000006ac        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x00000000000006ac                text_layer_set_font
+ .text.text_layer_set_text
+                0x00000000000006b8        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x00000000000006b8                text_layer_set_text
+ .text.text_layer_set_text_alignment
+                0x00000000000006c4        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x00000000000006c4                text_layer_set_text_alignment
+ .text.text_layer_set_text_color
+                0x00000000000006d0        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x00000000000006d0                text_layer_set_text_color
+ .text.tick_timer_service_subscribe
+                0x00000000000006dc        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x00000000000006dc                tick_timer_service_subscribe
+ .text.tick_timer_service_unsubscribe
+                0x00000000000006e8        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x00000000000006e8                tick_timer_service_unsubscribe
+ .text.window_create
+                0x00000000000006f4        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x00000000000006f4                window_create
+ .text.window_destroy
+                0x0000000000000700        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x0000000000000700                window_destroy
+ .text.window_get_root_layer
+                0x000000000000070c        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x000000000000070c                window_get_root_layer
+ .text.window_set_background_color
+                0x0000000000000718        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x0000000000000718                window_set_background_color
+ .text.window_set_fullscreen
+                0x0000000000000724        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x0000000000000724                window_set_fullscreen
+ .text.window_set_window_handlers
+                0x0000000000000730        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x0000000000000730                window_set_window_handlers
+ .text.window_stack_push
+                0x000000000000073c        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x000000000000073c                window_stack_push
+ .text.window_stack_remove
+                0x0000000000000748        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x0000000000000748                window_stack_remove
+ .text.app_message_outbox_begin
+                0x0000000000000754        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x0000000000000754                app_message_outbox_begin
+ .text.app_message_outbox_send
+                0x0000000000000760        0xc /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+                0x0000000000000760                app_message_outbox_send
  *(.rodata)
- .rodata        0x00000000000005e0       0x28 src/badgerweather.c.21.o
+ .rodata        0x000000000000076c       0x18 src/badgerweather.c.21.o
  *(.rodata*)
  .rodata.str1.1
-                0x0000000000000608       0x68 src/badgerweather.c.21.o
+                0x0000000000000784       0x82 src/badgerweather.c.21.o
 
-.glue_7         0x0000000000000670        0x0
+.glue_7         0x0000000000000808        0x0
  .glue_7        0x0000000000000000        0x0 linker stubs
 
-.glue_7t        0x0000000000000670        0x0
+.glue_7t        0x0000000000000808        0x0
  .glue_7t       0x0000000000000000        0x0 linker stubs
 
-.vfp11_veneer   0x0000000000000670        0x0
+.vfp11_veneer   0x0000000000000808        0x0
  .vfp11_veneer  0x0000000000000000        0x0 linker stubs
 
-.v4_bx          0x0000000000000670        0x0
+.v4_bx          0x0000000000000808        0x0
  .v4_bx         0x0000000000000000        0x0 linker stubs
 
-.iplt           0x0000000000000670        0x0
+.iplt           0x0000000000000808        0x0
  .iplt          0x0000000000000000        0x0 /Users/keith/pebble-dev/PebbleSDK-2.0.1/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
 
-.rel.dyn        0x0000000000000670        0x0
+.rel.dyn        0x0000000000000808        0x0
  .rel.iplt      0x0000000000000000        0x0 /Users/keith/pebble-dev/PebbleSDK-2.0.1/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
 
-.data           0x0000000000000670      0x264
+.data           0x0000000000000808      0x300
  *(.data)
- .data          0x0000000000000670        0x0 /Users/keith/pebble-dev/PebbleSDK-2.0.1/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crti.o
- .data          0x0000000000000670        0x4 /Users/keith/pebble-dev/PebbleSDK-2.0.1/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
-                0x0000000000000670                __dso_handle
- .data          0x0000000000000674        0x0 src/badgerweather.c.21.o
- .data          0x0000000000000674        0x0 appinfo.auto.c.21.o
- .data          0x0000000000000674        0x0 /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
- .data          0x0000000000000674        0x0 /Users/keith/pebble-dev/PebbleSDK-2.0.1/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtend.o
- .data          0x0000000000000674        0x0 /Users/keith/pebble-dev/PebbleSDK-2.0.1/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtn.o
+ .data          0x0000000000000808        0x0 /Users/keith/pebble-dev/PebbleSDK-2.0.1/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crti.o
+ .data          0x0000000000000808        0x4 /Users/keith/pebble-dev/PebbleSDK-2.0.1/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
+                0x0000000000000808                __dso_handle
+ .data          0x000000000000080c        0x0 src/badgerweather.c.21.o
+ .data          0x000000000000080c        0x0 appinfo.auto.c.21.o
+ .data          0x000000000000080c        0x0 /Users/keith/pebble-dev/PebbleSDK-2.0.1/Pebble/lib/libpebble.a(tmpziGGmipebble.o)
+ .data          0x000000000000080c        0x0 /Users/keith/pebble-dev/PebbleSDK-2.0.1/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtend.o
+ .data          0x000000000000080c        0x0 /Users/keith/pebble-dev/PebbleSDK-2.0.1/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtn.o
  *(.data.*)
+ .data.previous_icon
+                0x000000000000080c        0x4 src/badgerweather.c.21.o
  .data.icon_lookup
-                0x0000000000000674      0x260 src/badgerweather.c.21.o
-                0x0000000000000674                icon_lookup
+                0x0000000000000810      0x2f8 src/badgerweather.c.21.o
 
-.igot.plt       0x00000000000008d4        0x0
+.igot.plt       0x0000000000000b08        0x0
  .igot.plt      0x0000000000000000        0x0 /Users/keith/pebble-dev/PebbleSDK-2.0.1/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
 
-.bss            0x00000000000008d4       0x7c
+.bss            0x0000000000000b08       0x90
  *(.bss)
  *(.bss.*)
  .bss.icon_layer
-                0x00000000000008d4        0x4 src/badgerweather.c.21.o
- .bss.text_time_layer
-                0x00000000000008d8        0x4 src/badgerweather.c.21.o
+                0x0000000000000b08        0x4 src/badgerweather.c.21.o
+ .bss.window    0x0000000000000b0c        0x4 src/badgerweather.c.21.o
+ .bss.inter_bitmap
+                0x0000000000000b10        0x4 src/badgerweather.c.21.o
  .bss.temperature_layer
-                0x00000000000008dc        0x4 src/badgerweather.c.21.o
+                0x0000000000000b14        0x4 src/badgerweather.c.21.o
+ .bss.inter_showing
+                0x0000000000000b18        0x1 src/badgerweather.c.21.o
+ *fill*         0x0000000000000b19        0x3 
  .bss.icon_bitmap
-                0x00000000000008e0        0x4 src/badgerweather.c.21.o
- .bss.sync      0x00000000000008e4       0x20 src/badgerweather.c.21.o
+                0x0000000000000b1c        0x4 src/badgerweather.c.21.o
+ .bss.text_time_layer
+                0x0000000000000b20        0x4 src/badgerweather.c.21.o
+ .bss.sync      0x0000000000000b24       0x20 src/badgerweather.c.21.o
+ .bss.inter_window
+                0x0000000000000b44        0x4 src/badgerweather.c.21.o
+ .bss.inter_timer
+                0x0000000000000b48        0x4 src/badgerweather.c.21.o
  .bss.sync_buffer
-                0x0000000000000904       0x40 src/badgerweather.c.21.o
+                0x0000000000000b4c       0x40 src/badgerweather.c.21.o
  .bss.time_text
-                0x0000000000000944        0x6 src/badgerweather.c.21.o
- *fill*         0x000000000000094a        0x2 
- .bss.window    0x000000000000094c        0x4 src/badgerweather.c.21.o
+                0x0000000000000b8c        0x6 src/badgerweather.c.21.o
+ *fill*         0x0000000000000b92        0x2 
+ .bss.inter_layer
+                0x0000000000000b94        0x4 src/badgerweather.c.21.o
 
 DISCARD
  libc.a(*)
@@ -803,35 +826,35 @@ OUTPUT(/Users/keith/badgerweather/build/pebble-app.elf elf32-littlearm)
  .comment       0x0000000000000000       0x4f appinfo.auto.c.21.o
  .comment       0x0000000000000000       0x4f /Users/keith/pebble-dev/PebbleSDK-2.0.1/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtend.o
 
-.debug_info     0x0000000000000000     0x18cf
- .debug_info    0x0000000000000000     0x1532 src/badgerweather.c.21.o
- .debug_info    0x0000000000001532      0x39d appinfo.auto.c.21.o
+.debug_info     0x0000000000000000     0x1c21
+ .debug_info    0x0000000000000000     0x1884 src/badgerweather.c.21.o
+ .debug_info    0x0000000000001884      0x39d appinfo.auto.c.21.o
 
-.debug_abbrev   0x0000000000000000      0x435
- .debug_abbrev  0x0000000000000000      0x38a src/badgerweather.c.21.o
- .debug_abbrev  0x000000000000038a       0xab appinfo.auto.c.21.o
+.debug_abbrev   0x0000000000000000      0x45c
+ .debug_abbrev  0x0000000000000000      0x3b1 src/badgerweather.c.21.o
+ .debug_abbrev  0x00000000000003b1       0xab appinfo.auto.c.21.o
 
-.debug_loc      0x0000000000000000      0x322
- .debug_loc     0x0000000000000000      0x322 src/badgerweather.c.21.o
+.debug_loc      0x0000000000000000      0x430
+ .debug_loc     0x0000000000000000      0x430 src/badgerweather.c.21.o
 
-.debug_aranges  0x0000000000000000       0x60
+.debug_aranges  0x0000000000000000       0x80
  .debug_aranges
-                0x0000000000000000       0x48 src/badgerweather.c.21.o
+                0x0000000000000000       0x68 src/badgerweather.c.21.o
  .debug_aranges
-                0x0000000000000048       0x18 appinfo.auto.c.21.o
+                0x0000000000000068       0x18 appinfo.auto.c.21.o
 
-.debug_ranges   0x0000000000000000       0x98
- .debug_ranges  0x0000000000000000       0x98 src/badgerweather.c.21.o
+.debug_ranges   0x0000000000000000       0xb8
+ .debug_ranges  0x0000000000000000       0xb8 src/badgerweather.c.21.o
 
-.debug_line     0x0000000000000000      0x3bb
- .debug_line    0x0000000000000000      0x29f src/badgerweather.c.21.o
- .debug_line    0x000000000000029f      0x11c appinfo.auto.c.21.o
+.debug_line     0x0000000000000000      0x433
+ .debug_line    0x0000000000000000      0x317 src/badgerweather.c.21.o
+ .debug_line    0x0000000000000317      0x11c appinfo.auto.c.21.o
 
-.debug_str      0x0000000000000000      0xdfd
- .debug_str     0x0000000000000000      0xc25 src/badgerweather.c.21.o
-                                        0xcef (size before relaxing)
- .debug_str     0x0000000000000c25      0x1d8 appinfo.auto.c.21.o
+.debug_str      0x0000000000000000      0xed7
+ .debug_str     0x0000000000000000      0xcff src/badgerweather.c.21.o
+                                        0xde1 (size before relaxing)
+ .debug_str     0x0000000000000cff      0x1d8 appinfo.auto.c.21.o
                                         0x42a (size before relaxing)
 
-.debug_frame    0x0000000000000000       0xc0
- .debug_frame   0x0000000000000000       0xc0 src/badgerweather.c.21.o
+.debug_frame    0x0000000000000000      0x134
+ .debug_frame   0x0000000000000000      0x134 src/badgerweather.c.21.o
