@@ -34,31 +34,26 @@ static GBitmap *icon_bitmap = NULL;
 static TextLayer *text_time_layer;
 static char time_text[6];
 
-static AppSync sync;
-static uint8_t sync_buffer[64];
-
-static char previous_icon [] = "   ";
-
 static IconEntry icon_lookup[] = {
-                           { .icon="???", .resource_id=RESOURCE_ID_CLUELESS, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
-                           { .icon="01d", .resource_id=RESOURCE_ID_DAY_SUN, .tm_x=0, .tm_y=50, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=40, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
-                           { .icon="01n", .resource_id=RESOURCE_ID_NIGHT_CLEAR, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
-                           { .icon="02d", .resource_id=RESOURCE_ID_DAY_SUN_CLOUD, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
-                           { .icon="02n", .resource_id=RESOURCE_ID_NIGHT_CLEAR_CLOUD, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
-                           { .icon="03d", .resource_id=RESOURCE_ID_CLOUD, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
-                           { .icon="03n", .resource_id=RESOURCE_ID_CLOUD, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
-                           { .icon="04d", .resource_id=RESOURCE_ID_BROKEN_CLOUD, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
-                           { .icon="04n", .resource_id=RESOURCE_ID_BROKEN_CLOUD, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
-                           { .icon="09d", .resource_id=RESOURCE_ID_SHOWERS, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
-                           { .icon="09n", .resource_id=RESOURCE_ID_SHOWERS, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
-                           { .icon="10d", .resource_id=RESOURCE_ID_DAY_RAIN, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
-                           { .icon="10n", .resource_id=RESOURCE_ID_NIGHT_RAIN, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
-                           { .icon="11d", .resource_id=RESOURCE_ID_THUNDERSTORM, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
-                           { .icon="11n", .resource_id=RESOURCE_ID_THUNDERSTORM, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
-                           { .icon="13d", .resource_id=RESOURCE_ID_SNOW, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
-                           { .icon="13n", .resource_id=RESOURCE_ID_SNOW, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
-                           { .icon="50d", .resource_id=RESOURCE_ID_FOG, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18},
-                           { .icon="50n", .resource_id=RESOURCE_ID_FOG, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=-28, .tp_font=18}
+                           { .icon="???", .resource_id=RESOURCE_ID_CLUELESS, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=FONT_KEY_BITHAM_30_BLACK, .tp_font=FONT_KEY_GOTHIC_18},
+                           { .icon="01d", .resource_id=RESOURCE_ID_DAY_SUN, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=FONT_KEY_BITHAM_30_BLACK, .tp_font=FONT_KEY_GOTHIC_18},
+                           { .icon="01n", .resource_id=RESOURCE_ID_NIGHT_CLEAR, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=FONT_KEY_BITHAM_30_BLACK, .tp_font=FONT_KEY_GOTHIC_18},
+                           { .icon="02d", .resource_id=RESOURCE_ID_DAY_SUN_CLOUD, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=FONT_KEY_BITHAM_30_BLACK, .tp_font=FONT_KEY_GOTHIC_18},
+                           { .icon="02n", .resource_id=RESOURCE_ID_NIGHT_CLEAR_CLOUD, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=FONT_KEY_BITHAM_30_BLACK, .tp_font=FONT_KEY_GOTHIC_18},
+                           { .icon="03d", .resource_id=RESOURCE_ID_CLOUD, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=FONT_KEY_BITHAM_30_BLACK, .tp_font=FONT_KEY_GOTHIC_18},
+                           { .icon="03n", .resource_id=RESOURCE_ID_CLOUD, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=FONT_KEY_BITHAM_30_BLACK, .tp_font=FONT_KEY_GOTHIC_18},
+                           { .icon="04d", .resource_id=RESOURCE_ID_BROKEN_CLOUD, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=FONT_KEY_BITHAM_30_BLACK, .tp_font=FONT_KEY_GOTHIC_18},
+                           { .icon="04n", .resource_id=RESOURCE_ID_BROKEN_CLOUD, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=FONT_KEY_BITHAM_30_BLACK, .tp_font=FONT_KEY_GOTHIC_18},
+                           { .icon="09d", .resource_id=RESOURCE_ID_SHOWERS, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=FONT_KEY_BITHAM_30_BLACK, .tp_font=FONT_KEY_GOTHIC_18},
+                           { .icon="09n", .resource_id=RESOURCE_ID_SHOWERS, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=FONT_KEY_BITHAM_30_BLACK, .tp_font=FONT_KEY_GOTHIC_18},
+                           { .icon="10d", .resource_id=RESOURCE_ID_DAY_RAIN, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=FONT_KEY_BITHAM_30_BLACK, .tp_font=FONT_KEY_GOTHIC_18},
+                           { .icon="10n", .resource_id=RESOURCE_ID_NIGHT_RAIN, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=FONT_KEY_BITHAM_30_BLACK, .tp_font=FONT_KEY_GOTHIC_18},
+                           { .icon="11d", .resource_id=RESOURCE_ID_THUNDERSTORM, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=FONT_KEY_BITHAM_30_BLACK, .tp_font=FONT_KEY_GOTHIC_18},
+                           { .icon="11n", .resource_id=RESOURCE_ID_THUNDERSTORM, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=FONT_KEY_BITHAM_30_BLACK, .tp_font=FONT_KEY_GOTHIC_18},
+                           { .icon="13d", .resource_id=RESOURCE_ID_SNOW, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=FONT_KEY_BITHAM_30_BLACK, .tp_font=FONT_KEY_GOTHIC_18},
+                           { .icon="13n", .resource_id=RESOURCE_ID_SNOW, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=FONT_KEY_BITHAM_30_BLACK, .tp_font=FONT_KEY_GOTHIC_18},
+                           { .icon="50d", .resource_id=RESOURCE_ID_FOG, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=FONT_KEY_BITHAM_30_BLACK, .tp_font=FONT_KEY_GOTHIC_18},
+                           { .icon="50n", .resource_id=RESOURCE_ID_FOG, .tm_x=0, .tm_y=112, .tm_w=143, .tm_h=168-112, .tp_x=0, .tp_y=94, .tp_w=143, .tp_h=168-94, .tm_font=FONT_KEY_BITHAM_30_BLACK, .tp_font=FONT_KEY_GOTHIC_18}
 };
 
 static bool inter_showing = false;
@@ -66,6 +61,20 @@ static Window *inter_window;
 static BitmapLayer *inter_layer;
 static GBitmap *inter_bitmap;
 static AppTimer *inter_timer;
+
+char icon1[4] = "---";
+char icon2[4] = "---";
+char icon3[4] = "---";
+char temp1[20] = "";
+char temp2[20] = "";
+char temp3[20] = "";
+char dt1[21] = "";
+char dt2[21] = "";
+char dt3[21] = "";
+
+static bool fire_when_loaded_triggered = false;
+static AppTimer *fire_when_loaded_timer;
+static int level = 0;
 
 /*
  * Remove the intermission window
@@ -80,14 +89,16 @@ static void hide_inter_layer(void *data) {
   }
 }
 
+
+
 /*
  * Show the intermission window
  */
-static void show_inter() {
+static void show_inter(int type) {
 
-  // Already showing - make it vanish quickly
+  // Already showing - extend time
   if (inter_showing) {
-    app_timer_reschedule(inter_timer, 200);
+    app_timer_reschedule(inter_timer, INTER_DISPLAY_MS);
     return;
   }
 
@@ -103,15 +114,18 @@ static void show_inter() {
   inter_layer = bitmap_layer_create(GRect(0, 0, 144, 168));
   layer_add_child(window_layer, bitmap_layer_get_layer(inter_layer));
 
+  if (type == REFRESH)
   inter_bitmap = gbitmap_create_with_resource(RESOURCE_ID_INTERMISSION);
+  else if (type == TIMEWARP)
+  inter_bitmap = gbitmap_create_with_resource(RESOURCE_ID_TIMEWARP);
+  else if (type == TITLE)
+  inter_bitmap = gbitmap_create_with_resource(RESOURCE_ID_TITLE);
   bitmap_layer_set_bitmap(inter_layer, inter_bitmap);
 
   inter_timer = app_timer_register(INTER_DISPLAY_MS, hide_inter_layer, NULL);
 }
 
-static void sync_error_callback(DictionaryResult dict_error, AppMessageResult app_message_error, void *context) {
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "App Message Sync Error: %d", app_message_error);
-}
+
 
 static IconEntry* findInfo(const char *icon) {
   for (uint16_t i=0; i < ARRAY_LENGTH(icon_lookup); i++) {
@@ -122,13 +136,9 @@ static IconEntry* findInfo(const char *icon) {
   return &icon_lookup[0];
 }
 
-static GFont get_font(int font_id) {
-  if (font_id == 18) {
-    return fonts_get_system_font(FONT_KEY_GOTHIC_18);
-  } else if (font_id == -28) {
-    return fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD);
-  }
-  return fonts_get_system_font(FONT_KEY_GOTHIC_14); // Ooops
+static GFont get_font(char *font_id) {
+  // Can intercept here for custom fonts
+  return fonts_get_system_font(font_id);
 }
 
 static void set_weather_info(const char *icon) {
@@ -145,37 +155,49 @@ static void set_weather_info(const char *icon) {
 
 }
 
-static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tuple, const Tuple* old_tuple, void* context) {
-  switch (key) {
-  case WEATHER_ICON_KEY:
-    if (strncmp(new_tuple->value->cstring, previous_icon, sizeof(previous_icon)) != 0) {
-      show_inter();
-      set_weather_info(new_tuple->value->cstring);
-    }
-    break;
-
-  case WEATHER_TEMPERATURE_KEY:
-    // App Sync keeps new_tuple in sync_buffer, so we may use it directly
-    text_layer_set_text(temperature_layer, new_tuple->value->cstring);
-    break;
-
+void new_timewarp(int level_cng) {
+  level = level_cng;
+  if (level == 0) {
+    show_inter(TIMEWARP);
+    set_weather_info(icon1);
+    text_layer_set_text(temperature_layer, temp1);
+    clock_copy_time_string(time_text, sizeof(time_text));
+    if (time_text[4] == ' ')
+      time_text[4] = '\0';
+    text_layer_set_text(text_time_layer, time_text);
+  }
+  if (level == 1) {
+    show_inter(TIMEWARP);
+    set_weather_info(icon2);
+    text_layer_set_text(temperature_layer, temp2);
+    text_layer_set_text(text_time_layer, dt2);
+  }
+  if (level == 2) {
+    show_inter(TIMEWARP);
+    set_weather_info(icon3);
+    text_layer_set_text(temperature_layer, temp3);
+    text_layer_set_text(text_time_layer, dt3);
   }
 }
 
-static void send_cmd(void) {
-  Tuplet value = TupletInteger(1, 1);
 
-  DictionaryIterator *iter;
-  app_message_outbox_begin(&iter);
+static void fire_when_loaded(void *data) {
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "1: icon: %s, date: %s", icon1, dt1);
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "2: icon: %s, date: %s", icon2, dt2);
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "3: icon: %s, date: %s", icon3, dt3);
+  fire_when_loaded_triggered = false;
+  show_inter(REFRESH);
+  set_weather_info(icon1);
+  text_layer_set_text(temperature_layer, temp1);
+}
 
-  if (iter == NULL) {
-    return;
+void trigger_fire_when_loaded() {
+  if (fire_when_loaded_triggered) {
+    app_timer_reschedule (fire_when_loaded_timer, 200);
+  } else {
+    fire_when_loaded_triggered = true;
+    fire_when_loaded_timer = app_timer_register(200, fire_when_loaded, NULL);
   }
-
-  dict_write_tuplet(iter, &value);
-  dict_write_end(iter);
-
-  app_message_outbox_send();
 }
 
 static void window_load(Window *window) {
@@ -198,20 +220,11 @@ static void window_load(Window *window) {
 
   set_weather_info("???");
 
-  Tuplet initial_values[] = {
-    TupletCString(WEATHER_ICON_KEY, "01d"),
-    TupletCString(WEATHER_TEMPERATURE_KEY, "1234\u00B0C")
-  };
 
-  app_sync_init(&sync, sync_buffer, sizeof(sync_buffer), initial_values, ARRAY_LENGTH(initial_values),
-      sync_tuple_changed_callback, sync_error_callback, NULL);
 
-  send_cmd();
 }
 
 static void window_unload(Window *window) {
-  app_sync_deinit(&sync);
-
   if (icon_bitmap) {
     gbitmap_destroy(icon_bitmap);
   }
@@ -219,6 +232,7 @@ static void window_unload(Window *window) {
   text_layer_destroy(text_time_layer);
   text_layer_destroy(temperature_layer);
   bitmap_layer_destroy(icon_layer);
+
 }
 
 /*
@@ -226,10 +240,12 @@ static void window_unload(Window *window) {
  */
 static void handle_minute_tick(struct tm *tick_time, TimeUnits units_changed) {
 
-  clock_copy_time_string(time_text, sizeof(time_text));
-  if (time_text[4] == ' ')
-    time_text[4] = '\0';
-  text_layer_set_text(text_time_layer, time_text);
+  if (level == 0) {
+    clock_copy_time_string(time_text, sizeof(time_text));
+    if (time_text[4] == ' ')
+      time_text[4] = '\0';
+    text_layer_set_text(text_time_layer, time_text);
+  }
 
   if (tick_time->tm_min % 10 == 0) {
     send_cmd();
@@ -246,18 +262,23 @@ static void init(void) {
     .unload = window_unload
   });
 
-  const int inbound_size = 64;
-  const int outbound_size = 64;
-  app_message_open(inbound_size, outbound_size);
+  window_stack_push(window, false);
 
-  window_stack_push(window, true);
+  show_inter(TITLE);
 
   tick_timer_service_subscribe(MINUTE_UNIT, &handle_minute_tick);
+
+  init_comms();
+
+  init_motion_control();
 }
 
 static void deinit(void) {
+  deinit_motion_control();
+  deinit_comms();
   tick_timer_service_unsubscribe();
   window_destroy(window);
+
 }
 
 int main(void) {

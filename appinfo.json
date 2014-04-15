@@ -9,8 +9,16 @@
     "watchface": true
   },
   "appKeys": {
-    "icon": 0,
-    "temperature": 1
+    "ctrl": 0,
+    "icon1": 1,
+    "temp1": 2,
+    "dt1": 3,
+    "icon2": 4,
+    "temp2": 5,
+    "dt2": 6,
+    "icon3": 7,
+    "temp3": 8,
+    "dt3": 9
   },
   "resources": {
   	"media": [
@@ -83,6 +91,16 @@
 	        "type": "png",
 	        "name": "CLUELESS",
 	        "file": "img/clueless.png"
+	      },
+	      {
+	        "type": "png",
+	        "name": "TITLE",
+	        "file": "img/title.png"
+	      },
+	      {
+	        "type": "png",
+	        "name": "TIMEWARP",
+	        "file": "img/timewarp.png"
 	      }
       ]
   }

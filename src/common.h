@@ -27,12 +27,28 @@
 
 #include "pebble.h"
 
+#define FUDGE 4
 #define INTER_DISPLAY_MS 3000
 
+// All TUPLE_CSTRING
 enum WeatherKey {
-  WEATHER_ICON_KEY = 0x0,         // TUPLE_CSTRING
-  WEATHER_TEMPERATURE_KEY = 0x1   // TUPLE_CSTRING
+  WEATHER_CTRL_KEY = 0,
+  WEATHER_ICON1_KEY = 1,
+  WEATHER_TEMP1_KEY = 2,
+  WEATHER_DT1_KEY = 3,
+  WEATHER_ICON2_KEY = 4,
+  WEATHER_TEMP2_KEY = 5,
+  WEATHER_DT2_KEY = 6,
+  WEATHER_ICON3_KEY = 7,
+  WEATHER_TEMP3_KEY = 8,
+  WEATHER_DT3_KEY = 9
 };
+
+#define REFRESH 1
+#define TIMEWARP 2
+#define TITLE 3
+#define MAX_LEVEL 2
+#define LEVEL_WAIT_MS 10000
 
 typedef struct {
   char icon[10];
@@ -41,14 +57,20 @@ typedef struct {
   int16_t tm_y;
   int16_t tm_w;
   int16_t tm_h;
-  int tm_font;
+  char *tm_font;
   int16_t tp_x;
   int16_t tp_y;
   int16_t tp_w;
   int16_t tp_h;
-  int tp_font;
+  char *tp_font;
 } IconEntry;
 
-
+void init_motion_control();
+void deinit_motion_control();
+void trigger_fire_when_loaded();
+void init_comms();
+void deinit_comms();
+void send_cmd();
+void new_timewarp(int level);
 
 #endif /* COMMON_H_ */

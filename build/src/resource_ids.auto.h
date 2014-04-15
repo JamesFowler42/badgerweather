@@ -25,6 +25,8 @@ typedef enum {
   RESOURCE_ID_FOG,
   RESOURCE_ID_INTERMISSION,
   RESOURCE_ID_CLUELESS,
+  RESOURCE_ID_TITLE,
+  RESOURCE_ID_TIMEWARP,
 
 } ResourceId;
 
@@ -41,7 +43,9 @@ static const uint32_t resource_crc_table[] = {
   1623529178,
   8266758,
   3826889096,
-  783814028,
+  3358457212,
   3949328507,
+  4109086047,
+  1211608610,
 };
 
